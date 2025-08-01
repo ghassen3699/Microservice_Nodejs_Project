@@ -1,0 +1,12 @@
+# Ignore node_modules directory from catalog_service and order_service
+node_modules/
+# Ignore specific directories
+./order_service/node_modules/
+./catalog_service/node_modules/
+
+# Ignore build directories
+build/
+# Ignore logs
+logs/
+# Ignore environment variables
+.env
