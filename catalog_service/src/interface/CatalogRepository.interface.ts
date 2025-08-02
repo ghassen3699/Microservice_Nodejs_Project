@@ -1,7 +1,9 @@
+import { Product } from "../models/Product.model";
+
 export interface ICatalogRepository {
-    create(data: any): Promise<{}>;
-    findById(id: any): Promise<{}>;
-    findAll(): Promise<any[]>;
-    update(id: any, data: any): Promise<{}>;
-    delete(id: any): Promise<{}>;
+    create(data: Product): Promise<Product>;
+    findById(id: string): Promise<Product>;
+    findAll(): Promise<Product[]>;
+    update(id: string, data: Product): Promise<Product>;
+    delete(id: string): Promise<void>;
 }
