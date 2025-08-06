@@ -19,17 +19,25 @@ export class CatalogService {
 
     async updateProduct(input: any) {
         const data = await this._repository.update(input);
+        if (!data.id) {
+            throw new error('Unable to update product');
+        }
         return data;
     }
 
     async getProducts(limit: number, offset: number) {
         const data = await this._repository.findAll(limit, offset);
+        if (!data) {
+            throw new error('Unable to get products');
+        }
         return data;
     }
 
     async getProduct(id: number) {
         const data = await this._repository.findById(id);
-
+        if (!data) {
+            throw new error('Unable to get product');
+        }
         return data;
     }
 
