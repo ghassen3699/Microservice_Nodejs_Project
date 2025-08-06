@@ -1,3 +1,4 @@
+import { error } from "console";
 import { ICatalogRepository } from "../interface/CatalogRepository.interface";
 
 export class CatalogService {
@@ -8,23 +9,32 @@ export class CatalogService {
         this._repository = catalogRepository
     }
 
-    createProduct(input: any) {
-
+    async createProduct(input: any) {
+        const data = await this._repository.create(input);
+        if (!data.id) {
+            throw new error('Unable to create product');
+        }
+        return data;
     }
 
-    updateProduct(input: any) {
-
+    async updateProduct(input: any) {
+        const data = await this._repository.update(input);
+        return data;
     }
 
-    getProducts(limit: number, offset: number) {
-
+    async getProducts(limit: number, offset: number) {
+        const data = await this._repository.findAll(limit, offset);
+        return data;
     }
 
-    getProduct(id: number) {
+    async getProduct(id: number) {
+        const data = await this._repository.findById(id);
 
+        return data;
     }
 
-    deleteProduct(id: number) {
-
+    async deleteProduct(id: number) {
+        const response = await this._repository.delete(id);
+        return response;
     }
 }
